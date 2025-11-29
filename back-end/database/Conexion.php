@@ -7,7 +7,7 @@ class Conexion {
 
             $host = "localhost";
             $user = "root";
-            $pass = "Papermariottyd2";
+            $pass = "oscar0605";
             $db   = "punto_venta";
 
             self::$conexion = new mysqli($host, $user, $pass, $db);

@@ -12,27 +12,49 @@ $producto = $productoModel->obtenerPorId($id);
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Agregar Stock</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Stock</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="/punto-venta/front-end/assets/css/estilos.css">
 </head>
-<body>
+<body class="bg-light">
 
 <?php include __DIR__ . '/../includes/navbar.php'; ?>
 
-<div class="container">
-    <h1>Agregar Stock a: <?= $producto['nombre'] ?></h1>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow border-0">
+                <div class="card-body text-center p-5">
+                    <div class="mb-4">
+                        <i class="fa-solid fa-boxes-stacked fa-4x text-info mb-3"></i>
+                        <h2 class="fw-bold"><?= htmlspecialchars($producto['nombre']) ?></h2>
+                        <p class="text-muted">Stock actual: <strong><?= $producto['stock'] ?> unidades</strong></p>
+                    </div>
 
-    <form action="/punto-venta/back-end/routes/productos.php" method="POST">
-        <input type="hidden" name="id_producto" value="<?= $producto['id_producto'] ?>">
+                    <form action="/punto-venta/back-end/routes/productos.php" method="POST">
+                        <input type="hidden" name="id_producto" value="<?= $producto['id_producto'] ?>">
 
-        <label>Cantidad a agregar</label>
-        <input type="number" name="cantidad" min="1" required>
+                        <div class="mb-4 text-start">
+                            <label class="form-label fw-bold">Cantidad a agregar al inventario</label>
+                            <input type="number" name="cantidad" class="form-control form-control-lg" min="1" placeholder="Ej. 10" required>
+                            <div class="form-text">Ingresa solo la cantidad de productos nuevos que llegaron.</div>
+                        </div>
 
-        <button class="btn" type="submit" name="accion" value="agregar_stock">Actualizar Stock</button>
-    </form>
-
-    <a class="btn" href="/punto-venta/back-end/routes/productos.php">Volver</a>
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-info text-white btn-lg" type="submit" name="accion" value="agregar_stock">
+                                <i class="fa-solid fa-plus-circle"></i> Actualizar Stock
+                            </button>
+                            <a class="btn btn-light" href="/punto-venta/back-end/routes/productos.php">Cancelar</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
